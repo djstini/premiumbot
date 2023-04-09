@@ -1,0 +1,38 @@
+{
+  "name": "premiumbot",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "node ./index.js"
+  },
+  "dependencies": {
+    "@discordjs/opus": "^0.8.0",
+    "@discordjs/voice": "^0.14.0",
+    "axios": "^0.26.1",
+    "discord-tts": "^1.2.2",
+    "discord.js": ">12.5.3",
+    "ffmpeg-static": "^4.4.1",
+    "fs": "^0.0.1-security",
+    "install": "^0.13.0",
+    "jQuery": "^1.7.4",
+    "mongodb": "^4.13.0",
+    "node-html-parser": "^6.1.5",
+    "node-schedule": "^2.1.0",
+    "npm": "^9.2.0",
+    "sodium-native": "^3.4.1",
+    "toad-scheduler": "^1.6.1",
+    "util": "^0.12.5"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://gitlab.com/dennisstinauer/premiumbot.git"
+  },
+  "author": "Dennis Stinauer",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/dennisstinauer/premiumbot/issues"
+  },
+  "homepage": "https://gitlab.com/dennisstinauer/premiumbot#readme"
+}
