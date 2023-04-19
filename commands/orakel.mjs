@@ -89,7 +89,7 @@ let commandOracle = {
         break;
       case "artist":
         await getLyrics(
-          interaction.options.getString("musiker"),
+          interaction.options.getString("artist"),
           interaction,
           "Das Orakel Verkündet: "
         );
