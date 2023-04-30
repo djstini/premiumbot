@@ -3,6 +3,20 @@ import { parse } from "node-html-parser";
 
 function getLyrics(artist, interaction, prefix) {
   interaction.deferReply().then(() => {
+    lyricsRequest(artist).then((lines) => {
+      if (lyricsRequest) {
+        interaction.editReply(
+          prefix + '"' + lines[Math.floor(Math.random() * lines.length)] + '"'
+        );
+      } else {
+        interaction.editReply("Das Orakel ist Ratlos :(");
+      }
+    });
+  });
+}
+
+function lyricsRequest(artist) {
+  return new Promise((resolve) => {
     axios
       .get("https://genius.com/api/search/song/", {
         params: {
@@ -53,14 +67,9 @@ function getLyrics(artist, interaction, prefix) {
             }
           });
           if (lines.length > 0) {
-            interaction.editReply(
-              prefix +
-                '"' +
-                lines[Math.floor(Math.random() * lines.length)] +
-                '"'
-            );
+            resolve(lines);
           } else {
-            interaction.editReply("Das Orakel ist Ratlos :(");
+            resolve(false);
           }
         });
       });
@@ -87,3 +96,4 @@ function decodeEntities(encodedString) {
 }
 
 export default getLyrics;
+export { lyricsRequest };
