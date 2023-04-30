@@ -1,16 +1,8 @@
 import { handleMessage } from "./message-handling.mjs";
 import { updateVoiceState } from "./modules/voice-state.mjs";
-import {
-  Client,
-  Events,
-  GatewayIntentBits,
-  Collection,
-  ActivityType,
-} from "discord.js";
+import { Client, Events, GatewayIntentBits, Collection } from "discord.js";
 import fs from "node:fs";
 import config from "./config.mjs";
-import schedule from "node-schedule";
-import { lyricsRequest } from "./modules/lyrics.mjs";
 
 const client = new Client({
   intents: [
@@ -84,14 +76,3 @@ client.on("messageCreate", (message) => {
   handleMessage(client, message);
 });
 client.on("voiceStateUpdate", updateVoiceState);
-
-/**
- * Set Status every 5min to a quote by alexander Marcus.
- */
-const job = schedule.scheduleJob("* */5 * * * *", function () {
-  lyricsRequest("alexander_marcus").then((lines) => {
-    client.user.setActivity(lines[Math.floor(Math.random() * lines.length)], {
-      type: ActivityType.Game,
-    });
-  });
-});

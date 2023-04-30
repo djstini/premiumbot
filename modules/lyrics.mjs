@@ -1,13 +1,16 @@
 import axios from "axios";
+import { ActivityType } from "discord.js";
 import { parse } from "node-html-parser";
 
 function getLyrics(artist, interaction, prefix) {
   interaction.deferReply().then(() => {
     lyricsRequest(artist).then((lines) => {
       if (lyricsRequest) {
-        interaction.editReply(
-          prefix + '"' + lines[Math.floor(Math.random() * lines.length)] + '"'
-        );
+        let line = lines[Math.floor(Math.random() * lines.length)];
+        interaction.editReply(prefix + '"' + line + '"');
+        interaction.client.user.setActivity(line, {
+          type: ActivityType.Game,
+        });
       } else {
         interaction.editReply("Das Orakel ist Ratlos :(");
       }
